@@ -1,0 +1,225 @@
+use ecommerce
+'switched to db ecommerce'
+show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   72.00 KiB
+
+db.createCollection("messages")
+{ ok: 1 }
+
+db.createCollection("productos")
+{ ok: 1 }
+
+db.productos.insertMany([{"title":"Keyboard","price":"18.99","thumbnail":"https://cdn2.iconfinder.com/data/icons/gaming-flat-1/59/031_-_Game_Keyboard-256.png"},{"title":"Mouse","price":"10.00","thumbnail":"https://cdn4.iconfinder.com/data/icons/filled-lineo-computer/48/Rgb_mouse-256.png"},{"title":"Headphones","price":"12.99","thumbnail":"https://cdn3.iconfinder.com/data/icons/music-59/512/Music-04-256.png"},{"title":"Mouse Pad","price":"4","thumbnail":"https://cdn0.iconfinder.com/data/icons/back-to-school-smooth-vol-2/256/MOUSE_PAD-256.png"},{"title":"Monitor","price":"25","thumbnail":"https://cdn0.iconfinder.com/data/icons/devices-42/512/Normal_LCD-256.png"},{"title":"Gabinete","price":"40","thumbnail":"https://www.example.com/gabinete-gamer"},{"title":"Headphones stand","price":"10","thumbnail":"https://www.example.com/headphones-stand"},{"title":"Dualshock4","price":"25","thumbnail":"https://www.example.com/Dualshock4"},{"title":"Xbox controller","price":"25","thumbnail":"https://www.example.com/Xbox-controller"},{"title":"Play station 4","price":"25","thumbnail":"https://www.example.com/ps4"}])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("635a8fc7c3fe32ea10b235c5"),
+     '1': ObjectId("635a8fc7c3fe32ea10b235c6"),
+     '2': ObjectId("635a8fc7c3fe32ea10b235c7"),
+     '3': ObjectId("635a8fc7c3fe32ea10b235c8"),
+     '4': ObjectId("635a8fc7c3fe32ea10b235c9"),
+     '5': ObjectId("635a8fc7c3fe32ea10b235ca"),
+     '6': ObjectId("635a8fc7c3fe32ea10b235cb"),
+     '7': ObjectId("635a8fc7c3fe32ea10b235cc"),
+     '8': ObjectId("635a8fc7c3fe32ea10b235cd"),
+     '9': ObjectId("635a8fc7c3fe32ea10b235ce") } }
+
+db.messages.insertMany([{"author": "Agustin", "text": "Hola", "date": "2022-27-10 11:00"},{"author": "Agustin", "text": "Estoy haciendo un crud en mongo", "date": "2022-27-10 11:02"}, {"author": "Agustin", "text": "Creo que 10 mensajes son muchos", "date": "2022-27-10 11:05"},{"author": "Agustin", "text": "Voy 4 y ya no se que poner", "date": "2022-27-10 11:06"},{"author": "Agustin", "text": "si", "date": "2022-27-10 11:07"},{"author": "Luis", "text": "Hola", "date": "2022-27-10 11:10"},{"author": "Agustin", "text": "Hola x2", "date": "2022-27-10 11:11"},{"author": "Agustin", "text": "Hola x3", "date": "2022-27-10 11:12"},{"author": "Luis", "text": "Bueno ya llegue a 9", "date": "2022-27-10 11:14"},{"author": "Agustin", "text": "Y termine saludos", "date": "2022-27-10 11:15"}])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("635a91b3c3fe32ea10b235cf"),
+     '1': ObjectId("635a91b3c3fe32ea10b235d0"),
+     '2': ObjectId("635a91b3c3fe32ea10b235d1"),
+     '3': ObjectId("635a91b3c3fe32ea10b235d2"),
+     '4': ObjectId("635a91b3c3fe32ea10b235d3"),
+     '5': ObjectId("635a91b3c3fe32ea10b235d4"),
+     '6': ObjectId("635a91b3c3fe32ea10b235d5"),
+     '7': ObjectId("635a91b3c3fe32ea10b235d6"),
+     '8': ObjectId("635a91b3c3fe32ea10b235d7"),
+     '9': ObjectId("635a91b3c3fe32ea10b235d8") } }
+
+db.productos.find({}).forEach(function(doc) {
+  db.productos.update({_id: doc._id}, { 
+    $set: { price: Math.floor(Math.random() * (5000 - 100 + 1)) + 100 }
+  })
+})
+
+db.productos.find()
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c5"),
+  title: 'Keyboard',
+  price: 3984,
+  thumbnail: 'https://cdn2.iconfinder.com/data/icons/gaming-flat-1/59/031_-_Game_Keyboard-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c6"),
+  title: 'Mouse',
+  price: 4333,
+  thumbnail: 'https://cdn4.iconfinder.com/data/icons/filled-lineo-computer/48/Rgb_mouse-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c7"),
+  title: 'Headphones',
+  price: 1771,
+  thumbnail: 'https://cdn3.iconfinder.com/data/icons/music-59/512/Music-04-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c8"),
+  title: 'Mouse Pad',
+  price: 2813,
+  thumbnail: 'https://cdn0.iconfinder.com/data/icons/back-to-school-smooth-vol-2/256/MOUSE_PAD-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c9"),
+  title: 'Monitor',
+  price: 647,
+  thumbnail: 'https://cdn0.iconfinder.com/data/icons/devices-42/512/Normal_LCD-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235ca"),
+  title: 'Gabinete',
+  price: 3562,
+  thumbnail: 'https://www.example.com/gabinete-gamer' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cb"),
+  title: 'Headphones stand',
+  price: 3401,
+  thumbnail: 'https://www.example.com/headphones-stand' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cc"),
+  title: 'Dualshock4',
+  price: 2277,
+  thumbnail: 'https://www.example.com/Dualshock4' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cd"),
+  title: 'Xbox controller',
+  price: 4371,
+  thumbnail: 'https://www.example.com/Xbox-controller' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235ce"),
+  title: 'Play station 4',
+  price: 3551,
+  thumbnail: 'https://www.example.com/ps4' }
+
+db.messages.find()
+{ _id: ObjectId("635a91b3c3fe32ea10b235cf"),
+  author: 'Agustin',
+  text: 'Hola',
+  date: '2022-27-10 11:00' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d0"),
+  author: 'Agustin',
+  text: 'Estoy haciendo un crud en mongo',
+  date: '2022-27-10 11:02' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d1"),
+  author: 'Agustin',
+  text: 'Creo que 10 mensajes son muchos',
+  date: '2022-27-10 11:05' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d2"),
+  author: 'Agustin',
+  text: 'Voy 4 y ya no se que poner',
+  date: '2022-27-10 11:06' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d3"),
+  author: 'Agustin',
+  text: 'si',
+  date: '2022-27-10 11:07' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d4"),
+  author: 'Luis',
+  text: 'Hola',
+  date: '2022-27-10 11:10' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d5"),
+  author: 'Agustin',
+  text: 'Hola x2',
+  date: '2022-27-10 11:11' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d6"),
+  author: 'Agustin',
+  text: 'Hola x3',
+  date: '2022-27-10 11:12' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d7"),
+  author: 'Luis',
+  text: 'Bueno ya llegue a 9',
+  date: '2022-27-10 11:14' }
+{ _id: ObjectId("635a91b3c3fe32ea10b235d8"),
+  author: 'Agustin',
+  text: 'Y termine saludos',
+  date: '2022-27-10 11:15' }
+
+db.messages.estimatedDocumentCount()
+10
+
+db.productos.estimatedDocumentCount()
+10
+
+db.productos.insertOne({title: 'documento de prueba', price: 2324, thumbnail: "https://www.example.com/documento-de-prueba"})
+{ acknowledged: true,
+  insertedId: ObjectId("635a9941c3fe32ea10b235d9") }
+
+db.productos.find({price: {$lt: 1000}})
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c9"),
+  title: 'Monitor',
+  price: 647,
+  thumbnail: 'https://cdn0.iconfinder.com/data/icons/devices-42/512/Normal_LCD-256.png' }
+
+db.productos.find({$and: [{price: {$gte: 1000}},{price: {$lte: 3000}}]})
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c7"),
+  title: 'Headphones',
+  price: 1771,
+  thumbnail: 'https://cdn3.iconfinder.com/data/icons/music-59/512/Music-04-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c8"),
+  title: 'Mouse Pad',
+  price: 2813,
+  thumbnail: 'https://cdn0.iconfinder.com/data/icons/back-to-school-smooth-vol-2/256/MOUSE_PAD-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cc"),
+  title: 'Dualshock4',
+  price: 2277,
+  thumbnail: 'https://www.example.com/Dualshock4' }
+{ _id: ObjectId("635a9941c3fe32ea10b235d9"),
+  title: 'documento de prueba',
+  price: 2324,
+  thumbnail: 'https://www.example.com/documento-de-prueba' }
+
+db.productos.find({price: {$gt: 3000}})
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c5"),
+  title: 'Keyboard',
+  price: 3984,
+  thumbnail: 'https://cdn2.iconfinder.com/data/icons/gaming-flat-1/59/031_-_Game_Keyboard-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235c6"),
+  title: 'Mouse',
+  price: 4333,
+  thumbnail: 'https://cdn4.iconfinder.com/data/icons/filled-lineo-computer/48/Rgb_mouse-256.png' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235ca"),
+  title: 'Gabinete',
+  price: 3562,
+  thumbnail: 'https://www.example.com/gabinete-gamer' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cb"),
+  title: 'Headphones stand',
+  price: 3401,
+  thumbnail: 'https://www.example.com/headphones-stand' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cd"),
+  title: 'Xbox controller',
+  price: 4371,
+  thumbnail: 'https://www.example.com/Xbox-controller' }
+{ _id: ObjectId("635a8fc7c3fe32ea10b235ce"),
+  title: 'Play station 4',
+  price: 3551,
+  thumbnail: 'https://www.example.com/ps4' }
+
+db.productos.find({},{"title":1}).skip(2).limit(1).sort({price:1})
+{ _id: ObjectId("635a8fc7c3fe32ea10b235cc"),
+  title: 'Dualshock4' }
+
+db.productos.updateMany({},{$set: {stock: 100}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0 }
+
+db.productos.updateMany({price: {$gt: 4000}},{$set: {stock: 0}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0 }
+
+db.productos.deleteMany({price: {$lt: 1000}})
+{ acknowledged: true, deletedCount: 1 }
+
+
+
+
+
+db.createUser({user: 'pepe', pwd:'asd456', roles:[{role:'read', db:'ecommerce'}]})
+{ ok: 1 }
+db.auth('pepe', 'asd456')
+{ ok: 1 }
+use ecommerce
+'switched to db ecommerce'
+db.productos.insertOne({title: 'Prueba con usuario read'})
+{ acknowledged: true,
+  insertedId: ObjectId("635aa72d027578d2f518bdf6") }
